@@ -1,0 +1,41 @@
+<!--Two text inputs to take in the price and the quantity of the item-->
+<input type="text" id="txt-price" placeholder="Enter the price of the item">
+<input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+
+<!--Button to calculate-->
+<button id="btn-submit">Calculate</button>
+
+<!--div to output the calculation result-->
+<div id="output"></div>
+
+<script>
+    //references to the input elements, submit button, and output div
+    var priceInput = document.getElementById('txt-price');
+    var quantityInput = document.getElementById('txt-quantity');
+    var submitBtn = document.getElementById('btn-submit');
+    var output = document.getElementById('output');
+
+    //adds a click eventListener for the submit button
+    submitBtn.addEventListener('click', function () {
+        
+        //Gets the values from the input fields and converts them to numbers
+        var price = priceInput.value;
+        var quanity = quantityInput.value;
+        price = +price;
+        quanity = +quanity;
+
+        //if statement to check if either of the inputs are not valid numbers
+        if (Number.isNaN(price) || Number.isNaN(quanity)) {
+            //if not, then an error is outputed
+            output.innerHTML = 'Invalid input';
+            return;
+        }
+
+        //calculates the total price by multiplying the price and quantity
+        var totalPrice = price * quanity;
+        //rounds the total price to two decimal places
+        totalPrice = Math.round(totalPrice * 100) / 100;
+        //outputs the calculated result
+        output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+    });
+</script>
